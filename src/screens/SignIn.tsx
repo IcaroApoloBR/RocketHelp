@@ -11,13 +11,12 @@ export function SignIn() {
     const [password, setPassword] = useState('');
     const { colors } = useTheme();
 
-    function handleSignIn(){
+    function handleSignIn() {
         console.log(email, password)
     }
 
     return (
         <VStack flex={1} alignItems="center" bg="gray.600" px={8} pt={24}>
-
             <Logo />
 
             <Heading color="gray.100" fontSize="xl" mt={20} mb={6}>
@@ -37,8 +36,7 @@ export function SignIn() {
                 onChangeText={setPassword}
             />
 
-            <Button title="Entrar" w="full" onPress={handleSignIn}/>
-
+            <Button title="Entrar" w="full" onPress={handleSignIn} />
         </VStack>
     )
 }
