@@ -1,12 +1,51 @@
 import { useState } from 'react';
-import { HStack, IconButton, VStack, useTheme, Text, Heading } from 'native-base';
+import { HStack, IconButton, VStack, useTheme, Text, Heading, FlatList } from 'native-base';
 import { SignOut } from 'phosphor-react-native';
 import Logo from '../assets/logo_secondary.svg';
 
 import { Filter } from '../components/Filter';
+import { Button } from '../components/Button';
+import { Order, OrderProps } from '../components/Order';
 
 export function Home() {
     const [statusSelected, setStatusSelected] = useState<'open' | 'closed'>('open');
+    const [orders, setOrders] = useState<OrderProps[]>([
+        {
+            id: '123',
+            patrimony: '123456',
+            when: '18/07/2022 às 18:00',
+            status: 'open'
+        },
+        {
+            id: '1234',
+            patrimony: '123456',
+            when: '18/07/2022 às 18:00',
+            status: 'closed'
+        },
+        {
+            id: '12345',
+            patrimony: '123456',
+            when: '18/07/2022 às 18:00',
+            status: 'open'
+        }, {
+            id: '123456',
+            patrimony: '123456',
+            when: '18/07/2022 às 18:00',
+            status: 'open'
+        },
+        {
+            id: '1234567',
+            patrimony: '123456',
+            when: '18/07/2022 às 18:00',
+            status: 'closed'
+        },
+        {
+            id: '12345678',
+            patrimony: '123456',
+            when: '18/07/2022 às 18:00',
+            status: 'open'
+        }
+    ]);
     const { colors } = useTheme();
 
     return (
@@ -55,6 +94,16 @@ export function Home() {
                         isActive={statusSelected === 'closed'}
                     />
                 </HStack>
+
+                <FlatList
+                    data={orders}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) => <Order data={item} />}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{ paddingBottom: 100 }}
+                />
+
+                <Button title="Nova solicitação" />
             </VStack>
 
         </VStack>
